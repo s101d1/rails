@@ -28,6 +28,18 @@ local:
 #   storage_access_key: <%= Rails.application.credentials.dig(:azure_storage, :storage_access_key) %>
 #   container: your_container_name-<%= Rails.env %>
 
+# storj:
+#   service: storj
+#   access_grant: ""
+#   bucket: ""
+#   auth_service_address: auth.storjshare.io:7777
+#   link_sharing_address: https://link.storjshare.io
+#   s3_gateway:
+#     access_key_id: ""
+#     secret_access_key: ""
+#     endpoint: ""
+#     region: global
+
 # mirror:
 #   service: Mirror
 #   primary: local

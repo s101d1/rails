@@ -23,7 +23,7 @@ What is Active Storage?
 -----------------------
 
 Active Storage facilitates uploading files to a cloud storage service like
-Amazon S3, Google Cloud Storage, or Microsoft Azure Storage and attaching those
+Amazon S3, Google Cloud Storage, Microsoft Azure Storage, or Storj Cloud Storage and attaching those
 files to Active Record objects. It comes with a local disk-based service for
 development and testing and supports mirroring files to subordinate services for
 backups and migrations.
@@ -295,6 +295,54 @@ Add the [`google-cloud-storage`](https://github.com/GoogleCloudPlatform/google-c
 ```ruby
 gem "google-cloud-storage", "~> 1.11", require: false
 ```
+
+### Storj Cloud Storage Service
+
+Declare a Storj Cloud Storage service in `config/storage.yml`:
+
+```yaml
+storj:
+  service: storj
+  access_grant: ""
+  bucket: ""
+  auth_service_address: auth.storjshare.io:7777
+  link_sharing_address: https://link.storjshare.io
+```
+
+For direct upload, Storj S3 compatible gateway configuration is required:
+
+```yaml
+storj:
+  service: storj
+  access_grant: ""
+  bucket: ""
+  auth_service_address: auth.storjshare.io:7777
+  link_sharing_address: https://link.storjshare.io
+  s3_gateway:
+    access_key_id: ""
+    secret_access_key: ""
+    endpoint: ""
+    region: global
+```
+
+Optionally provide upload and download options:
+
+```yaml
+storj:
+  service: storj
+  ...
+  upload_chunk_size: 0
+  download_chunk_size: 0
+```
+
+Add the [uplink-ruby](https://github.com/storj-thirdparty/uplink-ruby) and [`aws-sdk-s3`](https://github.com/aws/aws-sdk-ruby) gem to your `Gemfile`:
+
+```ruby
+gem "uplink-ruby", "~> 1.0", require: false
+gem "aws-sdk-s3", require: false
+```
+
+Build and install the [uplink-c](https://github.com/storj/uplink-c) library which is required by the `uplink-ruby` gem. Follow the guide at [Prerequisites](https://github.com/storj-thirdparty/uplink-ruby#prerequisites) section.
 
 ### Mirror Service
 

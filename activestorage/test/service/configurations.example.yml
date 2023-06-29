@@ -29,3 +29,15 @@
 #   storage_account_name: ""
 #   storage_access_key: ""
 #   container: ""
+#
+# storj:
+#   service: storj
+#   access_grant:
+#   bucket:
+#   auth_service_address: auth.storjshare.io:7777
+#   link_sharing_address: https://link.storjshare.io
+#   s3_gateway:
+#     access_key_id:
+#     secret_access_key:
+#     endpoint:
+#     region: global
