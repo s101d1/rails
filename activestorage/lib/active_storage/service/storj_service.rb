@@ -5,11 +5,8 @@ gem "aws-sdk-s3", "~> 1.48"
 
 require "uplink"
 require "aws-sdk-s3"
-require "active_support/core_ext/numeric/bytes"
 
 module ActiveStorage
-  class S3GatewayConfigRequiredError < ActiveStorage::Error; end
-
   MULTIPART_UPLOAD_THRESHOLD = 5.megabytes
   AUTH_SERVICE_ADDRESS = "auth.storjshare.io:7777"
   LINK_SHARING_ADDRESS = "https://link.storjshare.io"
@@ -19,6 +16,8 @@ module ActiveStorage
   # Wraps the Storj as an Active Storage service.
   # See ActiveStorage::Service for the generic API documentation that applies to all services.
   class Service::StorjService < Service
+    class S3GatewayConfigRequiredError < ActiveStorage::Error; end
+
     attr_reader :bucket, :s3_bucket
 
     def initialize(access_grant:, bucket:, upload_chunk_size: nil, download_chunk_size: nil, multipart_upload_threshold: nil,
